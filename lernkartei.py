@@ -107,6 +107,7 @@ def starte_lernkartei():
     runde = 1
     gesamt_richtig = 0
     gesamt_falsch = 0
+    index_before = -1
 
     # ── Haupt-Schleife ──────────────────────────────
     while True:
@@ -135,7 +136,12 @@ def starte_lernkartei():
             continue
 
         # ── Zufällige Karte aus Liste 1 ─────────────
-        index = random.randrange(len(liste1))
+        running = True
+        while running:
+            index = random.randrange(len(liste1))
+            if index != index_before:
+                running = False
+        index_before = index
         paar = liste1[index]
         frage, antwort = paar[0], paar[1]
 
